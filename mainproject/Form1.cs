@@ -48,7 +48,7 @@ namespace mainproject
             DB db = new DB();
             DataTable table = new DataTable();
             MySqlDataAdapter adapter = new MySqlDataAdapter();
-            MySqlCommand command = new MySqlCommand("SELECT * FROM `users` WHERE `login` = @uL AND `pass` = @uP ",db.getConnection());
+            MySqlCommand command = new MySqlCommand("SELECT * FROM `users` WHERE `login` =  @uL AND `pass` = MD5(@uP)", db.getConnection());
             command.Parameters.Add("@uL", MySqlDbType.VarChar).Value = loginUser;
             command.Parameters.Add("@uP", MySqlDbType.VarChar).Value = passUser;
 
@@ -58,6 +58,7 @@ namespace mainproject
                 MessageBox.Show("Авторизован!");
             else
                 MessageBox.Show("Ошибка!");
+
 
         }
 
